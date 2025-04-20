@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app id="inspire">
+      <v-app-bar
+        class="px-3"
+        density="compact"
+        flat
+      >
+        <v-avatar
+          class="hidden-md-and-up"
+          color="grey-darken-1"
+          size="32"
+        ></v-avatar>
+  
+        <v-spacer></v-spacer>
+  
+        <v-tabs
+          align-tabs="center"
+          color="grey-darken-2"
+        >
+          <v-tab
+            v-for="link in links"
+            :key="link"
+            :text="link"
+          ></v-tab>
+        </v-tabs>
+        <v-spacer></v-spacer>
+  
+        <v-avatar
+          class="hidden-sm-and-down"
+          color="grey-darken-1"
+          size="32"
+        ></v-avatar>
+      </v-app-bar>
+  
+      <v-main class="bg-grey-lighten-3">
+        <v-container>
+          <v-row>
+            <v-col
+              cols="12"
+              md="2"
+            >
+              <v-sheet
+                min-height="268"
+                rounded="lg"
+              >
+                <!--  -->
+              </v-sheet>
+            </v-col>
+  
+            <v-col
+              cols="12"
+              md="8"
+            >
+              <v-sheet
+                min-height="70vh"
+                rounded="lg"
+              >
+                <!--  -->
+              </v-sheet>
+            </v-col>
+  
+            <v-col
+              cols="12"
+              md="2"
+            >
+              <v-sheet
+                min-height="268"
+                rounded="lg"
+              >
+                <!--  -->
+              </v-sheet>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const links = ref([
+          'Dashboard',
+          'Messages',
+          'Profile',
+          'Updates',
+        ])
+        return {
+          links
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
