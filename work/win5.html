@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app id="inspire">
+      <v-app-bar flat>
+        <v-container class="mx-auto d-flex align-center justify-center">
+          <v-avatar
+            class="me-4 "
+            color="grey-darken-1"
+            size="32"
+          ></v-avatar>
+  
+          <v-btn
+            v-for="link in links"
+            :key="link"
+            :text="link"
+            variant="text"
+          ></v-btn>
+  
+          <v-spacer></v-spacer>
+  
+          <v-responsive max-width="160">
+            <v-text-field
+              density="compact"
+              label="Search"
+              rounded="lg"
+              variant="solo-filled"
+              flat
+              hide-details
+              single-line
+            ></v-text-field>
+          </v-responsive>
+        </v-container>
+      </v-app-bar>
+  
+      <v-main class="bg-grey-lighten-3">
+        <v-container>
+          <v-row>
+            <v-col cols="2">
+              <v-sheet rounded="lg">
+                <v-list rounded="lg">
+                  <v-list-item
+                    v-for="n in 5"
+                    :key="n"
+                    :title="`WIN${n} ${races[n-1]}`"
+                    link
+                    v-on:focus="race_focused(n)"
+                  ></v-list-item>
+  
+                  <v-divider class="my-2"></v-divider>
+  
+                  <v-list-item
+                    color="grey-lighten-4"
+                    title="Refresh"
+                    link
+                  ></v-list-item>
+                </v-list>
+              </v-sheet>
+            </v-col>
+  
+            <v-col>
+              <v-sheet
+                min-height="70vh"
+                rounded="lg"
+              >
+                {{races[focused_race-1]}}
+              </v-sheet>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const links = ref([
+          'Dashboard',
+          'Messages',
+          'Profile',
+          'Updates',
+        ])
+        const focused_race = ref(1)
+
+        const races = ref([
+          '阪神10R 天満橋S',
+          '中山10R 京葉S',
+          '福島11R 福島牝馬S GⅢ',
+          '阪神11R 心斎橋S',
+          '中山11R 皐月賞GⅠ'
+        ])
+
+        function race_focused(idx){
+          console.log("focused : ", idx);
+          focused_race.value = idx;
+        }
+
+        return {
+          links,
+          races,
+          focused_race,
+          race_focused
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
