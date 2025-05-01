@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+  <!--
+  https://vuetifyjs.com/en/components/data-iterators/#usage
+  https://github.com/vuetifyjs/vuetify/issues/18751
+  Abobes stilla have a problem with title. This is modified in this code.
+  -->
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <v-data-iterator :items="items" :page="page">
+            <template v-slot:default="{ items }">
+              <template v-for="(item, i) in items" :key="i">
+                <v-card v-bind="item.raw"></v-card>
+
+                <br />
+              </template>
+            </template>
+            <template v-slot:footer="{ pageCount }">
+              <v-pagination v-model="page" :length="pageCount"></v-pagination>
+            </template>
+          </v-data-iterator>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const page = ref(1)
+        const items = ref(Array.from({ length: 15 }, (k, v) => ({
+          title: 'Item ' + (v + 1),
+          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!',
+        })))
+        return {
+          page,
+          items
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
