@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  参考
+  https://qiita.com/Yuto_Tatsumi/items/08362a4e8ab99af8167c
+  https://qiita.com/Quest_love33/items/a0d8a105ef3c0854b5ff
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <slotsample1>たまごやき</slotsample1>
+            <slotsample2><template v-slot:dinner>ハンバーグ</template></slotsample2>
+            <slotsample3>
+              <template v-slot:branch>クロワッサン</template>
+              <template v-slot:lunch>家系ラーメン</template>
+            </slotsample3>
+            <slotsample4></slotsample4>
+            <slotsample5 v-slot:default>とんこつラーメン</slotsample5>
+            <slotsample6 >{{drink}}</slotsample5>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const slot_sample_1 = {
+      template: "<div><p>今日の昼ごはんは<slot>なし</slot>です</p></div>",
+    }
+
+    const slot_sample_2 = {
+      template: "<div><p>今日の晩ごはんは<slot name='dinner'>なし</slot>です</p></div>",
+    }
+    const slot_sample_3 = {
+      template: "\
+        <div><p>今日のブランチは<slot name='branch'>なし</slot>です</p></div>\
+        <div><p>今日のランチは<slot name='lunch'>なし</slot>です</p></div>\
+      ",
+    }
+    const slot_sample_4 = {
+      template: "<div><p>今日の間食は<slot>なし</slot>です</p></div>",
+    }
+    const slot_sample_5 = {
+      template: "<div><p>今日の夜食は<slot>なし</slot>です</p></div>",
+    }
+    const slot_sample_6 = {
+      template: "<div><p>今日の寝酒は<slot>なし</slot>です</p></div>",
+    }
+
+    const app = createApp({
+      setup() {
+        const drink = 'ウイスキー';
+        return {
+          drink
+        }
+      },
+      components: {
+        'slotsample1': slot_sample_1,
+        'slotsample2': slot_sample_2,
+        'slotsample3': slot_sample_3,
+        'slotsample4': slot_sample_4,
+        'slotsample5': slot_sample_5,
+        'slotsample6': slot_sample_6,
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+
+  </script>
+
+</body>
+</html>
