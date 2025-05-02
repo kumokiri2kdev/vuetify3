@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/grids/#section-884c30685217306e30d630ec30fc30af30dd30a430f330c8
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <v-container class="bg-surface-variant">
+              <v-row
+                class="mb-6"
+                no-gutters
+              >
+                <v-col :cols="cols[0]">
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-{{ cols[0] }}
+                  </v-sheet>
+                </v-col>
+
+                <v-col :cols="cols[1]">
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-{{ cols[1] }}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref, computed } = Vue;
+    const { createVuetify, useDisplay } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const { lg, sm } = useDisplay()
+
+        const cols = computed(() => {
+          return lg.value ? [3, 9]
+            : sm.value ? [9, 3]
+              : [6, 6]
+        })
+        return {
+          lg,
+          sm,
+          cols
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

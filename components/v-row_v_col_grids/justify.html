@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/grids/#justify
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <v-container class="bg-surface-variant">
+              <v-row justify="start">
+                <v-col
+                  v-for="k in 2"
+                  :key="k"
+                  cols="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .justify-start {{k}}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row justify="center">
+                <v-col
+                  v-for="k in 2"
+                  :key="k"
+                  cols="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .justify-center {{k}}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row justify="end">
+                <v-col
+                  v-for="k in 2"
+                  :key="k"
+                  cols="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .justify-end {{k}}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row justify="space-around">
+                <v-col
+                  v-for="k in 2"
+                  :key="k"
+                  cols="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .justify-space-around {{k}}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row justify="space-between">
+                <v-col
+                  v-for="k in 2"
+                  :key="k"
+                  cols="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .justify-space-between {{k}}
+                  </v-sheet>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

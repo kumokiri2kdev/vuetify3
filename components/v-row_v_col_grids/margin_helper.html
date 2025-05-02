@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/grids/#section-30de30fc30b830f330d830eb30d130fc
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <v-container class="bg-surface-variant">
+              <v-row>
+                <v-col md="4">
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-md-4
+                  </v-sheet>
+                </v-col>
+                <v-col
+                  class="ms-auto"
+                  md="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-md-4 .ms-auto
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col
+                  class="ms-md-auto"
+                  md="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-md-4 .ms-md-auto
+                  </v-sheet>
+                </v-col>
+                <v-col
+                  class="ms-md-auto"
+                  md="4"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-md-4 .ms-md-auto
+                  </v-sheet>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col
+                  class="me-auto"
+                  cols="auto"
+                >
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-auto .me-auto
+                  </v-sheet>
+                </v-col>
+                <v-col cols="auto">
+                  <v-sheet class="pa-2 ma-2">
+                    .v-col-auto
+                  </v-sheet>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
