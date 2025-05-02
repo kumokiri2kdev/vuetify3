@@ -5,6 +5,7 @@
   <title>Vuetify 3 CDN Example</title>
   <!--
   https://vuetifyjs.com/en/components/data-iterators/#header-and-footer
+  v-table elements need <template v-slot:default> declaration.
   -->
   <!-- Vue 3 CDN -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
@@ -93,37 +94,39 @@
                       </template>
                     </v-list-item>
                     <v-table class="text-caption" density="compact">
-                      <tbody>
-                        <tr align="right">
-                          <th>DPI:</th>
+                      <template v-slot:default>
+                        <tbody>
+                          <tr align="right">
+                            <th>DPI:</th>
 
-                          <td>{{ item.raw.dpi }}</td>
-                        </tr>
+                            <td>{{ item.raw.dpi }}</td>
+                          </tr>
 
-                        <tr align="right">
-                          <th>Buttons:</th>
+                          <tr align="right">
+                            <th>Buttons:</th>
 
-                          <td>{{ item.raw.buttons }}</td>
-                        </tr>
+                            <td>{{ item.raw.buttons }}</td>
+                          </tr>
 
-                        <tr align="right">
-                          <th>Weight:</th>
+                          <tr align="right">
+                            <th>Weight:</th>
 
-                          <td>{{ item.raw.weight }}</td>
-                        </tr>
+                            <td>{{ item.raw.weight }}</td>
+                          </tr>
 
-                        <tr align="right">
-                          <th>Wireless:</th>
+                          <tr align="right">
+                            <th>Wireless:</th>
 
-                          <td>{{ item.raw.wireless ? 'Yes' : 'No' }}</td>
-                        </tr>
+                            <td>{{ item.raw.wireless ? 'Yes' : 'No' }}</td>
+                          </tr>
 
-                        <tr align="right">
-                          <th>Price:</th>
+                          <tr align="right">
+                            <th>Price:</th>
 
-                          <td>${{ item.raw.price }}</td>
-                        </tr>
-                      </tbody>
+                            <td>${{ item.raw.price }}</td>
+                          </tr>
+                        </tbody>
+                      </template>
                     </v-table>
                   </v-sheet>
                 </v-col>
