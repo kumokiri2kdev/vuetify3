@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/cards/#section-30c630ad30b930c84ed8304d30e130c730a330a2
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card
+            class="mx-auto"
+            max-width="400"
+          >
+            <v-img
+              class="align-end text-white"
+              height="200"
+              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+              cover
+            >
+              <v-card-title>Top 10 Australian beaches</v-card-title>
+            </v-img>
+
+            <v-card-subtitle class="pt-4">
+              Number 10
+            </v-card-subtitle>
+
+            <v-card-text>
+              <div>Whitehaven Beach</div>
+
+              <div>Whitsunday Island, Whitsunday Islands</div>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-btn color="orange" text="Share"></v-btn>
+
+              <v-btn color="orange" text="Explore"></v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

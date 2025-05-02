@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/cards/#twitter30ab30fc30c9
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card
+            class="mx-auto text-white"
+            color="#26c6da"
+            max-width="400"
+            prepend-icon="mdi-twitter"
+            title="Twitter"
+          >
+            <template v-slot:prepend>
+              <v-icon size="x-large"></v-icon>
+            </template>
+
+            <v-card-text class="text-h5 py-2">
+              "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
+            </v-card-text>
+
+            <v-card-actions>
+              <v-list-item class="w-100">
+                <template v-slot:prepend>
+                  <v-avatar
+                    color="grey-darken-3"
+                    image="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                  ></v-avatar>
+                </template>
+
+                <v-list-item-title>Evan You</v-list-item-title>
+
+                <v-list-item-subtitle>Vue Creator</v-list-item-subtitle>
+
+                <template v-slot:append>
+                  <div class="justify-self-end">
+                    <v-icon class="me-1" icon="mdi-heart"></v-icon>
+                    <span class="subheading me-2">256</span>
+                    <span class="me-1">·</span>
+                    <v-icon class="me-1" icon="mdi-share-variant"></v-icon>
+                    <span class="subheading">45</span>
+                  </div>
+                </template>
+              </v-list-item>
+            </v-card-actions>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

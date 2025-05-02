@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/cards/#section-30ab30b930bf30e030a230af30b730e730f3
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card
+            class="mx-auto"
+            max-width="344"
+          >
+            <v-img
+              height="200px"
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              cover
+            ></v-img>
+
+            <v-card-title>
+              Top western road trips
+            </v-card-title>
+
+            <v-card-subtitle>
+              1,000 miles of wonder
+            </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn
+                color="orange-lighten-2"
+                text="Explore"
+              ></v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="show = !show"
+              ></v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const show = ref(false)
+        return {
+          show
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
