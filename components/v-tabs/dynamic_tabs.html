@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/tabs/#section-52d57684306a30bf30d6
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-tabs
+              v-model="tab"
+              bg-color="red-lighten-2"
+            >
+              <v-tab
+                v-for="n in length"
+                :key="n"
+                :text="`Item ${n}`"
+                :value="n"
+              ></v-tab>
+            </v-tabs>
+
+            <v-card-text class="text-center">
+              <v-btn
+                :disabled="!length"
+                text="Remove Tab"
+                variant="text"
+                @click="length--"
+              ></v-btn>
+
+              <v-divider
+                class="mx-4"
+                vertical
+              ></v-divider>
+
+              <v-btn
+                text="Add Tab"
+                variant="text"
+                @click="length++"
+              ></v-btn>
+            </v-card-text>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref, watch } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const length = ref(15)
+        const tab = ref(null)
+
+        watch(length, val => {
+          tab.value = val - 1
+        })
+        return {
+          length,
+          tab
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

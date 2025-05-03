@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/tabs/#section-30bf30d6306830a630a330f330c930a6306e30a230a430c630e0
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-sheet color="#0d1117" elevation="3" rounded="lg">
+            <v-tabs
+              v-model="tab"
+              :items="tabs"
+              align-tabs="center"
+              color="white"
+              height="60"
+              slider-color="#f78166"
+            >
+              <template v-slot:tab="{ item }">
+                <v-tab
+                  :prepend-icon="item.icon"
+                  :text="item.text"
+                  :value="item.value"
+                  class="text-none"
+                ></v-tab>
+              </template>
+
+              <template v-slot:item="{ item }">
+                <v-tabs-window-item :value="item.value" class="pa-4">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!
+                </v-tabs-window-item>
+              </template>
+            </v-tabs>
+          </v-sheet>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const tab = ref('tab-1')
+        const tabs = [
+          {
+            icon: 'mdi-book-open-page-variant',
+            text: 'Readme',
+            value: 'tab-1',
+          },
+          {
+            icon: 'mdi-handshake-outline',
+            text: 'Code of Conduct',
+            value: 'tab-2',
+          },
+          {
+            icon: 'mdi-license',
+            text: 'MIT License',
+            value: 'tab-3',
+          },
+          {
+            icon: 'mdi-shield-lock-outline',
+            text: 'Security',
+            value: 'tab-4',
+          },
+        ]
+        return {
+          tab,
+          tabs
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

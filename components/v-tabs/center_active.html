@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/tabs/#center-active
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-tabs
+              bg-color="deep-purple-darken-4"
+              center-active
+            >
+              <v-tab>One</v-tab>
+              <v-tab>Two</v-tab>
+              <v-tab>Three</v-tab>
+              <v-tab>Four</v-tab>
+              <v-tab>Five</v-tab>
+              <v-tab>Six</v-tab>
+              <v-tab>Seven</v-tab>
+              <v-tab>Eight</v-tab>
+              <v-tab>Nine</v-tab>
+              <v-tab>Ten</v-tab>
+              <v-tab>Eleven</v-tab>
+              <v-tab>Twelve</v-tab>
+              <v-tab>Thirteen</v-tab>
+              <v-tab>Fourteen</v-tab>
+              <v-tab>Fifteen</v-tab>
+              <v-tab>Sixteen</v-tab>
+              <v-tab>Seventeen</v-tab>
+              <v-tab>Eighteen</v-tab>
+              <v-tab>Nineteen</v-tab>
+              <v-tab>Twenty</v-tab>
+            </v-tabs>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

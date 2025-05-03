@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/tabs/#align-tabs
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-tabs
+              v-model="tab"
+              align-tabs="end"
+              color="deep-purple-accent-4"
+            >
+              <v-tab :value="1">Landscape</v-tab>
+              <v-tab :value="2">City</v-tab>
+              <v-tab :value="3">Abstract</v-tab>
+            </v-tabs>
+
+            <v-tabs-window v-model="tab">
+              <v-tabs-window-item
+                v-for="n in 3"
+                :key="n"
+                :value="n"
+              >
+                <v-container fluid>
+                  <v-row>
+                    <v-col
+                      v-for="i in 6"
+                      :key="i"
+                      cols="12"
+                      md="4"
+                    >
+                      <v-img
+                        :lazy-src="`https://picsum.photos/10/6?image=${i * n * 5 + 10}`"
+                        :src="`https://picsum.photos/500/300?image=${i * n * 5 + 10}`"
+                        height="205"
+                        cover
+                      ></v-img>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-tabs-window-item>
+            </v-tabs-window>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const tab = ref(null);
+        return {
+          tab
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

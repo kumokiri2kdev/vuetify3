@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/tabs/#section-4f7f304465b9
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-tabs
+              v-model="tab"
+              bg-color="primary"
+            >
+              <v-tab value="one">Item One</v-tab>
+              <v-tab value="two">Item Two</v-tab>
+              <v-tab value="three">Item Three</v-tab>
+            </v-tabs>
+
+            <v-card-text>
+              <v-tabs-window v-model="tab">
+                <v-tabs-window-item value="one">
+                  One
+                </v-tabs-window-item>
+
+                <v-tabs-window-item value="two">
+                  Two
+                </v-tabs-window-item>
+
+                <v-tabs-window-item value="three">
+                  Three
+                </v-tabs-window-item>
+              </v-tabs-window>
+            </v-card-text>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const tab = ref(null);
+        return {
+          tab
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
