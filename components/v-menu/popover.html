@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/menus/#popover-30e130cb30e530fc
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div class="text-center">
+            <v-menu
+              v-model="menu"
+              :close-on-content-click="false"
+              location="end"
+            >
+              <template v-slot:activator="{ props }">
+                <v-btn
+                  color="indigo"
+                  v-bind="props"
+                >
+                  Menu as Popover
+                </v-btn>
+              </template>
+
+              <v-card min-width="300">
+                <v-list>
+                  <v-list-item
+                    prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
+                    subtitle="Founder of Vuetify"
+                    title="John Leider"
+                  >
+                    <template v-slot:append>
+                      <v-btn
+                        :class="fav ? 'text-red' : ''"
+                        icon="mdi-heart"
+                        variant="text"
+                        @click="fav = !fav"
+                      ></v-btn>
+                    </template>
+                  </v-list-item>
+                </v-list>
+
+                <v-divider></v-divider>
+
+                <v-list>
+                  <v-list-item>
+                    <v-switch
+                      v-model="message"
+                      color="purple"
+                      label="Enable messages"
+                      hide-details
+                    ></v-switch>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-switch
+                      v-model="hints"
+                      color="purple"
+                      label="Enable hints"
+                      hide-details
+                    ></v-switch>
+                  </v-list-item>
+                </v-list>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    variant="text"
+                    @click="menu = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    color="primary"
+                    variant="text"
+                    @click="menu = false"
+                  >
+                    Save
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-menu>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const fav = ref(true)
+        const menu = ref(false)
+        const message = ref(false)
+        const hints = ref(true)
+        return {
+          fav,
+          menu,
+          message,
+          hints
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

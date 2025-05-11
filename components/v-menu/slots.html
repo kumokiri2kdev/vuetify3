@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/menus/#section-30a230af30c630a330d930fc30bf30fc306830c430fc30eb30c130c330d7
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div class="text-center">
+            <v-menu>
+              <template v-slot:activator="{ props: menu }">
+                <v-tooltip location="top">
+                  <template v-slot:activator="{ props: tooltip }">
+                    <v-btn
+                      color="primary"
+                      v-bind="mergeProps(menu, tooltip)"
+                    >
+                      Dropdown w/ Tooltip
+                    </v-btn>
+                  </template>
+                  <span>I'm A Tooltip</span>
+                </v-tooltip>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(item, index) in items"
+                  :key="index"
+                  :value="index"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref, mergeProps } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const items = [
+          { title: 'Click Me 1' },
+          { title: 'Click Me 2' },
+          { title: 'Click Me 3' },
+          { title: 'Click Me 4' },
+        ]
+        return {
+          items,
+          mergeProps
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

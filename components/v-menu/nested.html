@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/menus/#nested-menus
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div class="text-center">
+            <v-btn color="primary">
+              Open menu
+
+              <v-menu activator="parent">
+                <v-list>
+                  <v-list-item v-for="i in 5" :key="i" link>
+                    <v-list-item-title>Item {{ i }}</v-list-item-title>
+                    <template v-slot:append>
+                      <v-icon icon="mdi-menu-right" size="x-small"></v-icon>
+                    </template>
+
+                    <v-menu :open-on-focus="false" activator="parent" open-on-hover submenu>
+                      <v-list>
+                        <v-list-item v-for="j in 5" :key="j" link>
+                          <v-list-item-title>Item {{ i }} - {{ j }}</v-list-item-title>
+                          <template v-slot:append>
+                            <v-icon icon="mdi-menu-right" size="x-small"></v-icon>
+                          </template>
+
+                          <v-menu :open-on-focus="false" activator="parent" open-on-hover submenu>
+                            <v-list>
+                              <v-list-item v-for="k in 5" :key="k" link>
+                                <v-list-item-title>Item {{ i }} - {{ j }} - {{ k }}</v-list-item-title>
+                              </v-list-item>
+                            </v-list>
+                          </v-menu>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-btn>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const message = ref('Hello Vuetify3');
+        return {
+          message
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
