@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/lists/#sub-group
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card
+            class="mx-auto"
+            width="300"
+          >
+            <v-list v-model:opened="open">
+              <v-list-item prepend-icon="mdi-home" title="Home"></v-list-item>
+
+              <v-list-group value="Users">
+                <template v-slot:activator="{ props }">
+                  <v-list-item
+                    v-bind="props"
+                    prepend-icon="mdi-account-circle"
+                    title="Users"
+                  ></v-list-item>
+                </template>
+
+                <v-list-group value="Admin">
+                  <template v-slot:activator="{ props }">
+                    <v-list-item
+                      v-bind="props"
+                      title="Admin"
+                    ></v-list-item>
+                  </template>
+
+                  <v-list-item
+                    v-for="([title, icon], i) in admins"
+                    :key="i"
+                    :prepend-icon="icon"
+                    :title="title"
+                    :value="title"
+                  ></v-list-item>
+                </v-list-group>
+
+                <v-list-group value="Actions">
+                  <template v-slot:activator="{ props }">
+                    <v-list-item
+                      v-bind="props"
+                      title="Actions"
+                    ></v-list-item>
+                  </template>
+
+                  <v-list-item
+                    v-for="([title, icon], i) in cruds"
+                    :key="i"
+                    :prepend-icon="icon"
+                    :title="title"
+                    :value="title"
+                  ></v-list-item>
+                </v-list-group>
+              </v-list-group>
+            </v-list>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const open = ref(['Users'])
+
+        const admins = [
+          ['Management', 'mdi-account-multiple-outline'],
+          ['Settings', 'mdi-cog-outline'],
+        ]
+        const cruds = [
+          ['Create', 'mdi-plus-outline'],
+          ['Read', 'mdi-file-outline'],
+          ['Update', 'mdi-update'],
+          ['Delete', 'mdi-delete'],
+        ]
+        return {
+          open,
+          admins,
+          cruds
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
