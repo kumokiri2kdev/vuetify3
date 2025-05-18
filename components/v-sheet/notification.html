@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/sheets/#section-8abf6574901a77e5
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-sheet
+            class="pa-4 text-center mx-auto"
+            elevation="12"
+            max-width="600"
+            rounded="lg"
+            width="100%"
+          >
+            <v-icon
+              class="mb-5"
+              color="success"
+              icon="mdi-check-circle"
+              size="112"
+            ></v-icon>
+
+            <h2 class="text-h5 mb-6">You reconciled this account</h2>
+
+            <p class="mb-4 text-medium-emphasis text-body-2">
+              To see a report on this reconciliation, click <a class="text-decoration-none text-info" href="#">View reconciliation report.</a>
+
+              <br>
+
+              Otherwise, you're done!
+            </p>
+
+            <v-divider class="mb-4"></v-divider>
+
+            <div class="text-end">
+              <v-btn
+                class="text-none"
+                color="success"
+                variant="flat"
+                width="90"
+                rounded
+              >
+                Done
+              </v-btn>
+            </div>
+          </v-sheet>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
