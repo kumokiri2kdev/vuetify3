@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/buttons/#inside-of-bars
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-toolbar>
+            <template v-slot:prepend>
+              <v-btn icon="mdi-arrow-left"></v-btn>
+            </template>
+
+            <v-btn class="ms-5" icon="mdi-archive-plus-outline"></v-btn>
+
+            <v-btn icon="mdi-alert-circle-outline"></v-btn>
+
+            <v-btn icon="mdi-delete-outline"></v-btn>
+
+            <template v-if="$vuetify.display.smAndUp">
+              <v-divider
+                class="mx-3 align-self-center"
+                length="24"
+                thickness="2"
+                vertical
+              ></v-divider>
+
+              <v-btn icon="mdi-folder-outline"></v-btn>
+
+              <v-btn icon="mdi-tag-outline"></v-btn>
+
+              <v-btn icon="mdi-dots-vertical"></v-btn>
+            </template>
+          </v-toolbar>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

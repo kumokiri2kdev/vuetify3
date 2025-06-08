@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/buttons/#custom-loader
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div class="text-center">
+            <v-btn
+              :loading="loading"
+              @click="loading = !loading"
+            >
+              Custom loader
+
+              <template v-slot:loader>
+                <v-progress-linear indeterminate></v-progress-linear>
+              </template>
+            </v-btn>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref, watch } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const loading = ref(false)
+          watch(loading, val => {
+            if (!val) return
+            setTimeout(() => (loading.value = false), 2000)
+          })
+        return {
+          loading
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

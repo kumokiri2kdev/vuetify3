@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/buttons/#dialog-action
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-sheet
+            class="position-relative"
+            min-height="450"
+          >
+            <div class="position-absolute d-flex align-center justify-center w-100 h-100">
+              <v-btn
+                color="deep-purple-darken-2"
+                size="x-large"
+                @click="dialog = !dialog"
+              >
+                Open Dialog
+              </v-btn>
+            </div>
+
+            <v-fade-transition hide-on-leave>
+              <v-card
+                v-if="dialog"
+                append-icon="$close"
+                class="mx-auto"
+                elevation="16"
+                max-width="500"
+                title="Send a receipt"
+              >
+                <template v-slot:append>
+                  <v-btn icon="$close" variant="text" @click="dialog = false"></v-btn>
+                </template>
+
+                <v-divider></v-divider>
+
+                <div class="py-12 text-center">
+                  <v-icon
+                    class="mb-6"
+                    color="success"
+                    icon="mdi-check-circle-outline"
+                    size="128"
+                  ></v-icon>
+
+                  <div class="text-h4 font-weight-bold">This receipt was sent</div>
+                </div>
+
+                <v-divider></v-divider>
+
+                <div class="pa-4 text-end">
+                  <v-btn
+                    class="text-none"
+                    color="medium-emphasis"
+                    min-width="92"
+                    variant="outlined"
+                    rounded
+                    @click="dialog = false"
+                  >
+                    Close
+                  </v-btn>
+                </div>
+              </v-card>
+            </v-fade-transition>
+          </v-sheet>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const dialog = ref(true)
+        return {
+          dialog
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
