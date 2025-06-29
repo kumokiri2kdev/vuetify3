@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/dialogs/#persistent-ff086c387d9a76848868793aff09
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div class="text-center pa-4">
+            <v-dialog
+              v-model="dialog"
+              max-width="400"
+              persistent
+            >
+              <template v-slot:activator="{ props: activatorProps }">
+                <v-btn v-bind="activatorProps">
+                  Open Dialog
+                </v-btn>
+              </template>
+
+              <v-card
+                prepend-icon="mdi-map-marker"
+                text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
+                title="Use Google's location service?"
+              >
+                <template v-slot:actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn @click="dialog = false">
+                    Disagree
+                  </v-btn>
+
+                  <v-btn @click="dialog = false">
+                    Agree
+                  </v-btn>
+                </template>
+              </v-card>
+            </v-dialog>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const dialog = ref(false)
+        return {
+          dialog
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
