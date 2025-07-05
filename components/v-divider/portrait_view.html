@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/dividers/#portrait-view
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-card
+            class="mx-auto"
+            max-width="500"
+          >
+            <v-card-item class="bg-cyan-darken-1">
+              <v-card-title>
+                <span class="text-h5">Sarah Mcbeal</span>
+              </v-card-title>
+
+              <template v-slot:append>
+                <v-defaults-provider
+                  :defaults="{
+                    VBtn: {
+                      variant: 'text',
+                      density: 'comfortable',
+                    }
+                  }"
+                >
+                  <v-btn icon="mdi-chevron-left"></v-btn>
+
+                  <v-btn icon="mdi-pencil"></v-btn>
+
+                  <v-btn icon="mdi-dots-vertical"></v-btn>
+                </v-defaults-provider>
+              </template>
+            </v-card-item>
+
+            <v-list>
+              <v-list-item
+                append-icon="mdi-message-text"
+                prepend-icon="mdi-phone"
+                title="(650) 555-1234"
+              ></v-list-item>
+
+              <v-divider inset></v-divider>
+
+              <v-list-item
+                append-icon="mdi-message-text"
+                prepend-icon="mdi-phone"
+                title="(323) 555-6789"
+              ></v-list-item>
+
+              <v-divider inset></v-divider>
+
+              <v-list-item
+                prepend-icon="mdi-email"
+                title="mcbeal@example.com"
+              ></v-list-item>
+
+              <v-divider inset></v-divider>
+
+              <v-list-item
+                prepend-icon="mdi-map-marker"
+                title="Orlando, FL 79938"
+              ></v-list-item>
+            </v-list>
+
+            <v-img
+              height="200"
+              src="https://picsum.photos/700?image=996"
+              cover
+            ></v-img>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
