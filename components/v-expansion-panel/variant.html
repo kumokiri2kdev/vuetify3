@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/expansion-panels/#variant
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <div class="text-subtitle-2 mb-2">Default</div>
+            <v-expansion-panels>
+              <v-expansion-panel
+                v-for="i in 3"
+                :key="i"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                title="Item"
+              ></v-expansion-panel>
+            </v-expansion-panels>
+
+            <div class="text-subtitle-2 mt-4 mb-2">Accordion</div>
+
+            <v-expansion-panels variant="accordion">
+              <v-expansion-panel
+                v-for="i in 3"
+                :key="i"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                title="Item"
+              ></v-expansion-panel>
+            </v-expansion-panels>
+
+            <div class="text-subtitle-2 mt-4 mb-2">Inset</div>
+
+            <v-expansion-panels class="my-4" variant="inset">
+              <v-expansion-panel
+                v-for="i in 3"
+                :key="i"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                title="Item"
+              ></v-expansion-panel>
+            </v-expansion-panels>
+
+            <div class="text-subtitle-2 mt-4 mb-2">Popout</div>
+
+            <v-expansion-panels class="my-4" variant="popout">
+              <v-expansion-panel
+                v-for="i in 3"
+                :key="i"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                title="Item"
+              ></v-expansion-panel>
+            </v-expansion-panels>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
