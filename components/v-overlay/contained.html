@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/overlays/#contained
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-row
+            align="center"
+            class="ma-4"
+            justify="center"
+          >
+            <v-card
+              height="300"
+              width="250"
+            >
+              <v-row justify="center">
+                <v-btn
+                  class="mt-12"
+                  color="success"
+                  @click="overlay = !overlay"
+                >
+                  Show Overlay
+                </v-btn>
+
+                <v-overlay
+                  v-model="overlay"
+                  class="align-center justify-center"
+                  contained
+                >
+                  <v-btn
+                    color="success"
+                    @click="overlay = false"
+                  >
+                    Hide Overlay
+                  </v-btn>
+                </v-overlay>
+              </v-row>
+            </v-card>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const overlay = ref(false)
+        return {
+          overlay
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

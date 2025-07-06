@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/overlays/#section-4e0a7d1a
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <v-hover v-slot="{ isHovering, props }">
+              <v-card
+                class="mx-auto"
+                max-width="344"
+                v-bind="props"
+              >
+                <v-img src="https://cdn.vuetifyjs.com/images/cards/forest-art.jpg"></v-img>
+
+                <v-card-text>
+                  <h2 class="text-h6 text-primary">
+                    Magento Forests
+                  </h2>
+                  Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
+                </v-card-text>
+
+                <v-card-title>
+                  <v-rating
+                    :model-value="4"
+                    class="me-2"
+                    color="orange"
+                    density="compact"
+                    hover
+                  ></v-rating>
+                  <span class="text-primary text-subtitle-2">64 Reviews</span>
+                </v-card-title>
+
+                <v-overlay
+                  :model-value="!!isHovering"
+                  class="align-center justify-center"
+                  scrim="#036358"
+                  contained
+                >
+                  <v-btn variant="flat">See more info</v-btn>
+                </v-overlay>
+              </v-card>
+            </v-hover>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        return {
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
