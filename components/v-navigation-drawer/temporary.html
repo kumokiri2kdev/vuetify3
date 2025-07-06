@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  memo
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-layout>
+              <v-navigation-drawer
+                v-model="drawer"
+                temporary
+              >
+                <v-list-item
+                  prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
+                  title="John Leider"
+                ></v-list-item>
+
+                <v-divider></v-divider>
+
+                <v-list density="compact" nav>
+                  <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
+                  <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+                </v-list>
+              </v-navigation-drawer>
+              <v-main style="height: 250px">
+                <div class="d-flex justify-center align-center h-100">
+                  <v-btn
+                    color="primary"
+                    @click.stop="drawer = !drawer"
+                  >
+                    Toggle
+                  </v-btn>
+                </div>
+              </v-main>
+            </v-layout>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const drawer = ref(null)
+        return {
+          drawer
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

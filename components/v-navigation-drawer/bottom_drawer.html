@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/navigation-drawers/#bottom-drawer
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="">
+          <v-card>
+            <v-layout>
+              <v-app-bar color="primary">
+                <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+                <v-toolbar-title>My files</v-toolbar-title>
+
+                <template v-if="$vuetify.display.mdAndUp">
+                  <v-btn icon="mdi-magnify" variant="text"></v-btn>
+
+                  <v-btn icon="mdi-filter" variant="text"></v-btn>
+                </template>
+
+                <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
+              </v-app-bar>
+
+              <v-navigation-drawer
+                v-model="drawer"
+                :location="$vuetify.display.mobile ? 'bottom' : undefined"
+                temporary
+              >
+                <v-list
+                  :items="items"
+                ></v-list>
+              </v-navigation-drawer>
+
+              <v-main style="height: 500px;">
+                <v-card-text>
+                  The navigation drawer will appear from the bottom on smaller size screens.
+                </v-card-text>
+              </v-main>
+            </v-layout>
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref, watch } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const items = [
+          {
+            title: 'Foo',
+            value: 'foo',
+          },
+          {
+            title: 'Bar',
+            value: 'bar',
+          },
+          {
+            title: 'Fizz',
+            value: 'fizz',
+          },
+          {
+            title: 'Buzz',
+            value: 'buzz',
+          },
+        ]
+
+        const drawer = ref(false)
+        const group = ref(null)
+
+        watch(group, () => {
+          drawer.value = false
+        })
+        return {
+          items,
+          drawer,
+          group
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
