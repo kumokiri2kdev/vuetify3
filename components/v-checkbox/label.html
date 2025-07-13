@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/checkboxes/#label-30b930ed30c330c8
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <v-container fluid>
+            <v-checkbox v-model="checkbox">
+              <template v-slot:label>
+                <div>
+                  I agree that
+                  <v-tooltip location="bottom">
+                    <template v-slot:activator="{ props }">
+                      <a
+                        href="https://vuetifyjs.com"
+                        target="_blank"
+                        v-bind="props"
+                        @click.stop
+                      >
+                        Vuetify
+                      </a>
+                    </template>
+                    Opens in new window
+                  </v-tooltip>
+                  is awesome
+                </div>
+              </template>
+            </v-checkbox>
+          </v-container>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const checkbox = ref(false)
+        return {
+          checkbox
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>

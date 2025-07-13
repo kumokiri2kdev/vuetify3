@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuetify 3 CDN Example</title>
+
+  <!--
+  https://vuetifyjs.com/ja/components/checkboxes/#colors
+  -->
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Vuetify 3 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.1/dist/vuetify.min.js"></script>
+
+  <!-- Material Design Icons (任意だが推奨) -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <div>
+            <v-container fluid>
+              <v-row>
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="red"
+                    label="red"
+                    value="red"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="red-darken-3"
+                    label="red-darken-3"
+                    value="red-darken-3"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="indigo"
+                    label="indigo"
+                    value="indigo"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="indigo-darken-3"
+                    label="indigo-darken-3"
+                    value="indigo-darken-3"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="orange"
+                    label="orange"
+                    value="orange"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="orange-darken-3"
+                    label="orange-darken-3"
+                    value="orange-darken-3"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+
+              <v-row class="mt-12">
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="primary"
+                    label="primary"
+                    value="primary"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="secondary"
+                    label="secondary"
+                    value="secondary"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="success"
+                    label="success"
+                    value="success"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="info"
+                    label="info"
+                    value="info"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                  sm="4"
+                >
+                  <v-checkbox
+                    v-model="ex4"
+                    color="warning"
+                    label="warning"
+                    value="warning"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="ex4"
+                    color="error"
+                    label="error"
+                    value="error"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const app = createApp({
+      setup() {
+        const ex4 = ref(['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3'])
+        return {
+          ex4
+        }
+      }
+    });
+
+    const vuetify = createVuetify();
+    app.use(vuetify);
+    app.mount('#app');
+  </script>
+
+</body>
+</html>
